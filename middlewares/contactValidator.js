@@ -5,7 +5,6 @@ const contactValidator = (req, res, next) => {
     if (!name || !email || !phone) {
         const requiredFields = ["name", "email", "phone"];
         const missingFields = requiredFields.filter(field => !req.body[field] || req.body[field] === "");
-        console.log(missingFields);
         const message = `missing required ${missingFields.join(", ")} - ${missingFields.length > 1 ? "fields" : "field"}`;
         return res.status(400).json({ message: message });
     }
