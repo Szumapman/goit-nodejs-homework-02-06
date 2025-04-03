@@ -50,8 +50,18 @@ router.delete('/:contactId', async (req, res, next) => {
   }
 })
 
-router.put('/:contactId', async (req, res, next) => {
-  res.json({ message: 'template message' })
+router.put('/:contactId', contactValidator, async (req, res, next) => {
+  try {
+    const { contactId } = req.params;
+    const { name, email, phone } = req.body;
+    const contact = await updateContact(contactId, body);
+    if (!contact) {
+      return res.status(404).json({ message: 'Not found' });
+    }
+    res.status(200).json(contact);
+  } catch (error) {
+    next(error);
+  }
 })
 
 module.exports = router
