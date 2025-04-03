@@ -1,5 +1,6 @@
 const express = require('express')
 
+const contactValidator  = require('../../middlewares/contactValidator')
 const { listContacts, getContactById, removeContact, addContact, updateContact } = require('../../models/contacts')
 
 const router = express.Router()
@@ -26,7 +27,7 @@ router.get('/:contactId', async (req, res, next) => {
   }
 })
 
-router.post('/', async (req, res, next) => {
+router.post('/', contactValidator, async (req, res, next) => {
   try {
     const { name, email, phone } = req.body;
     const contact = await addContact({ name, email, phone });
