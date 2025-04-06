@@ -1,7 +1,7 @@
 const joi = require('joi');
 
 const contactValidator = (req, res, next) => {
-    MIN_NAME_LENGTH = 3;
+    const MIN_NAME_LENGTH = 3;
     const { name, email, phone } = req.body;
     if (!name || !email || !phone) {
         const requiredFields = ["name", "email", "phone"];
