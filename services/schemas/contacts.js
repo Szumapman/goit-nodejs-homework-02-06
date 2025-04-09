@@ -9,11 +9,11 @@ const contacts = new mongoose.Schema(
         },
         email: {
             type: String,
-            required: [true, 'Email is required'],
+            required: [true, 'Email is required'], // because it was required in contactValidator middleware I added required: true here
         },
         phone: {
             type: String,
-            required: [true, 'Phone is required'],
+            required: [true, 'Phone is required'], // because it was required in contactValidator middleware I added required: true here
         },
         favorite: {
             type: Boolean,
