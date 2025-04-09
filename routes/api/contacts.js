@@ -1,7 +1,7 @@
 const express = require('express')
 
 const contactValidator  = require('../../middlewares/contactValidator')
-const { listContacts, getContactById, removeContact, addContact, updateContact } = require('../../models/contacts')
+const { listContacts, getContactById, removeContact, addContact, updateContact } = require('../../repositories/contacts')
 
 const router = express.Router()
 
