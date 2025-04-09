@@ -54,7 +54,7 @@ router.put('/:contactId', contactValidator, async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const { name, email, phone } = req.body;
-    const contact = await updateContact(contactId, body);
+    const contact = await updateContact(contactId, { name, email, phone });
     if (!contact) {
       return res.status(404).json({ message: 'Not found' });
     }
