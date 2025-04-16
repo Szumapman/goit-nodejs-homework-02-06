@@ -6,7 +6,6 @@ const login = async (req, res, next) => {
     try {
         const { email, password } = req.body;
         const user = await getUser({ email });
-        console.log(user);
         if (!user) {
             return res.status(401).json({ message: MESSAGE_WRONG_LOGIN });
         }
