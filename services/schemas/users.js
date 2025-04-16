@@ -1,8 +1,10 @@
 import { boolean } from 'joi';
 import { STARTER, PRO, BUSSINES } from '../../constants/subscriptions';
 const mongoose = require('mongoose');
+const bcrypt = require('bcrypt');
+const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
 
-const users = new mongoose.Schema(
+const user = new mongoose.Schema(
     {
         password: {
             type: String,
@@ -24,6 +26,12 @@ const users = new mongoose.Schema(
         }
     },
     { versionKey: false, timestamps: true }
-)
+);
 
-module.exports = mongoose.model('users', users, 'user');
+user.methods.setHashedPassword = async function (password) {
+    this.password = await bcrypt.hash(password, SALT_ROUNDS);
+};
+
+const User = mongoose.model('user', user, 'user');
+
+module.exports = User;
