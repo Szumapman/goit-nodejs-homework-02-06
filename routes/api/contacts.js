@@ -3,10 +3,11 @@ const express = require('express')
 const contactValidator  = require('../../middlewares/contactValidator')
 const { listContacts, getContactById, removeContact, addContact, updateContact, updateStatusContact } = require('../../repositories/contacts')
 const favoriteValidator = require('../../middlewares/favoriteValidator')
+const auth = require('../../middlewares/auth/auth')
 
 const router = express.Router()
 
-router.get('/', async (req, res, next) => {
+router.get('/', auth, async (req, res, next) => {
   try {
     const contacts = await listContacts()
     res.status(200).json(contacts)
@@ -15,7 +16,7 @@ router.get('/', async (req, res, next) => {
   }
 })
 
-router.get('/:contactId', async (req, res, next) => {
+router.get('/:contactId', auth, async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const contact = await getContactById(contactId);
@@ -28,7 +29,7 @@ router.get('/:contactId', async (req, res, next) => {
   }
 })
 
-router.post('/', contactValidator, async (req, res, next) => {
+router.post('/', contactValidator, auth, async (req, res, next) => {
   try {
     const { name, email, phone } = req.body;
     const contact = await addContact({ name, email, phone });
@@ -38,7 +39,7 @@ router.post('/', contactValidator, async (req, res, next) => {
   }
 })
 
-router.delete('/:contactId', async (req, res, next) => {
+router.delete('/:contactId', auth, async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const contact = await removeContact(contactId);
@@ -51,7 +52,7 @@ router.delete('/:contactId', async (req, res, next) => {
   }
 })
 
-router.put('/:contactId', contactValidator, async (req, res, next) => {
+router.put('/:contactId', contactValidator, auth, async (req, res, next) => {
   try {
     const { contactId } = req.params;
     const { name, email, phone } = req.body;
