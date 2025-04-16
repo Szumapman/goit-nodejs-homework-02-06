@@ -1,5 +1,4 @@
-import { boolean } from 'joi';
-import { STARTER, PRO, BUSSINES } from '../../constants/subscriptions';
+const { STARTER, PRO, BUSSINES } = require('../../constants/subscriptions');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
@@ -21,7 +20,7 @@ const user = new mongoose.Schema(
             default: STARTER,
         },
         isLoggedIn: { // because saving tokens in DB is not the best practice, I changed field token to isLoggedIn
-            type: boolean,
+            type: Boolean,
             default: false,
         }
     },
