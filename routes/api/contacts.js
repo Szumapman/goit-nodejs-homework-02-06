@@ -1,8 +1,8 @@
 const express = require('express')
 
-const contactValidator  = require('../../middlewares/contactValidator')
+const contactValidator  = require('../../middlewares/validators/contactValidator')
 const { listContacts, getContactById, removeContact, addContact, updateContact, updateStatusContact } = require('../../repositories/contacts')
-const favoriteValidator = require('../../middlewares/favoriteValidator')
+const favoriteValidator = require('../../middlewares/validators/favoriteValidator')
 const auth = require('../../middlewares/auth/auth')
 const paramsValidator = require('../../middlewares/validators/paramsValidator')
 
