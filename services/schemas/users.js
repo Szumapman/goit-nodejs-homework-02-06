@@ -1,6 +1,7 @@
 const { STARTER, PRO, BUSSINES } = require('../../constants/subscriptions');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+require('dotenv').config();
 const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
 
 const user = new mongoose.Schema(
