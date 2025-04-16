@@ -31,6 +31,10 @@ user.methods.setHashedPassword = async function (password) {
     this.password = await bcrypt.hash(password, SALT_ROUNDS);
 };
 
+user.methods.verifyPassword = async function (password) {
+    return await bcrypt.compare(password, this.password);
+};
+
 const User = mongoose.model('user', user, 'user');
 
 module.exports = User;
