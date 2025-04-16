@@ -4,12 +4,18 @@ const contactValidator  = require('../../middlewares/contactValidator')
 const { listContacts, getContactById, removeContact, addContact, updateContact, updateStatusContact } = require('../../repositories/contacts')
 const favoriteValidator = require('../../middlewares/favoriteValidator')
 const auth = require('../../middlewares/auth/auth')
+const paramsValidator = require('../../middlewares/validators/paramsValidator')
 
 const router = express.Router()
 
-router.get('/', auth, async (req, res, next) => {
+router.get('/', paramsValidator, auth, async (req, res, next) => {
   try {
-    const contacts = await listContacts()
+    const { page = 1, limit = 20, favorite } = req.query;
+    const filter = { owner: req.user._id }
+    if (favorite) {
+      filter.favorite = favorite;
+    }
+    const contacts = await listContacts(page, limit, filter);
     res.status(200).json(contacts)
   } catch (error) {
     next(error)
@@ -32,7 +38,8 @@ router.get('/:contactId', auth, async (req, res, next) => {
 router.post('/', contactValidator, auth, async (req, res, next) => {
   try {
     const { name, email, phone } = req.body;
-    const contact = await addContact({ name, email, phone });
+    const owner = req.user._id;
+    const contact = await addContact({ name, email, phone, owner });
     res.status(201).json(contact);
   } catch (error) {
     next(error);
