@@ -2,8 +2,8 @@ const { nanoid } = require('nanoid');
 const contacts = require('../services/schemas/contacts');
 
 
-const listContacts = async () => {
-  return await contacts.find();
+const listContacts = async (page = 1, limit = 20, filter) => {
+  return await contacts.find(filter).skip((page - 1) * limit).limit(limit);
 }
 
 const getContactById = async (contactId) => {
@@ -14,8 +14,8 @@ const removeContact = async (contactId) => {
   return await contacts.findByIdAndDelete(contactId);
 }
 
-const addContact = async ({ name, email, phone }) => {
-  return await contacts.create({ name, email, phone });
+const addContact = async ({ name, email, phone, owner }) => {
+  return await contacts.create({ name, email, phone, owner });
 }
 
 const updateContact = async (contactId, { name, email, phone }) => {
