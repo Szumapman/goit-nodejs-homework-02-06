@@ -1,4 +1,3 @@
-const { required } = require('joi');
 const mongoose = require('mongoose');
 
 const contacts = new mongoose.Schema(
@@ -19,6 +18,10 @@ const contacts = new mongoose.Schema(
             type: Boolean,
             default: false,
         },
+        owner: {
+            type: mongoose.SchemaTypes.ObjectId,
+            ref: 'user',
+        }
     },
     { versionKey: false }
 );
