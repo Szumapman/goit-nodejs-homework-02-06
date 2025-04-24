@@ -10,6 +10,7 @@ const { PUBLIC_PATH } = require('./constants/folders');
 
 const app = express();
 
+app.set("view engine", "ejs");
 app.use(express.static(PUBLIC_PATH));
 
 const formatsLogger = app.get('env') === 'development' ? 'dev' : 'short';
@@ -28,7 +29,7 @@ app.use((req, res) => {
 });
 
 app.use((err, req, res, next) => {
-  res.status(500).json({ message: err.message })
+  res.status(err.status || 500).json({ message: err.message })
 });
 
 module.exports = app;
