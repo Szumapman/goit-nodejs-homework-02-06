@@ -2,7 +2,7 @@ const { STARTER, PRO, BUSSINES } = require('../../constants/subscriptions');
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
-const SALT_ROUNDS = process.env.SALT_ROUNDS || 10;
+const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 10;
 
 const user = new mongoose.Schema(
     {
@@ -23,6 +23,9 @@ const user = new mongoose.Schema(
         isLoggedIn: { // because saving tokens in DB is not the best practice, I changed field token to isLoggedIn
             type: Boolean,
             default: false,
+        },
+        avatarURL: {
+            type: String,
         }
     },
     { versionKey: false, timestamps: true }
