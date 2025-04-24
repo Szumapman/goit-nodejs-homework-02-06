@@ -8,5 +8,5 @@ const PUBLIC_PATH = path.join(process.cwd(), PUBLIC_DIR_NAME);
 const PUBLIC_AVATARS_PATH = path.join(process.cwd(), PUBLIC_DIR_NAME, AVATARS_DIR_NAME);
 const TEMP_AVATARS_PATH = path.join(process.cwd(), TEMP_DIR_NAME, AVATARS_DIR_NAME);
 
-module.exports = { PUBLIC_PATH, PUBLIC_AVATARS_PATH, TEMP_AVATARS_PATH };
+module.exports = { PUBLIC_PATH, PUBLIC_AVATARS_PATH, TEMP_AVATARS_PATH, AVATARS_DIR_NAME };
 
