@@ -10,7 +10,8 @@ const storage = multer.diskStorage({
         cb(null, TEMP_AVATARS_PATH);
     },
     filename: (req, file, cb) => {
-        cb(null, `${nanoid()}-${file.originalname}`);
+        const ext = path.extname(file.originalname);
+        cb(null, `user-avatar-${nanoid()}-${ext}`);
     }
 });
 
