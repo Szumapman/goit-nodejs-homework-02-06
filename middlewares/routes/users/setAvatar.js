@@ -11,7 +11,7 @@ const setAvatar = async (req, res, next) => {
     }
     const user = await setUserField(userId, 'avatarURL', `/${AVATARS_DIR_NAME}/${avatarFileName}`);
     if (oldAvatarURL) await deleteOldAvatar(oldAvatarURL);
-    return res.status(200).json({ message: 'Avatar set', user: { email: user.email, subscription: user.subscription, avatarURL: user.avatarURL } });
+    return res.status(200).json({ avatarURL: user.avatarURL });
 }
 
 module.exports = setAvatar;
