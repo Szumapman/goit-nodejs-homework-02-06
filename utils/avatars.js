@@ -19,13 +19,13 @@ const adjustAvatar = async (path) => {
     }
 };
 
-const deleteOldAvatar = async (oldAvatarURL) => {
+const deleteAvatarFileFromServer = async (avatarURLToDelete) => {
     try {
-        await fs.unlink(path.join(PUBLIC_PATH, oldAvatarURL));
+        await fs.unlink(path.join(PUBLIC_PATH, avatarURLToDelete));
     } catch (error) {
         console.log(error);
     }
 };
 
 
-module.exports = { createDefaultAvatar, adjustAvatar, deleteOldAvatar };
+module.exports = { createDefaultAvatar, adjustAvatar, deleteAvatarFileFromServer };
