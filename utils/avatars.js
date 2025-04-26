@@ -3,7 +3,7 @@ const { Jimp } = require('jimp');
 const fs = require('fs').promises;
 const path = require('path');
 const { AVATAR_SIZE } = require('../constants/avatars');
-const { AVATARS_DIR_NAME, PUBLIC_PATH } = require('../constants/folders');
+const { PUBLIC_PATH } = require('../constants/folders');
 
 
 const createDefaultAvatar = (email) => gravatar.url(email, { s: `${AVATAR_SIZE}`, r: 'g', d: 'robohash' }, true);

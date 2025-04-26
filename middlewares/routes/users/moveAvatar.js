@@ -1,6 +1,5 @@
 const fs = require('fs').promises;
 const path = require('path');
-const { nanoid } = require('nanoid');
 const { adjustAvatar } = require('../../../utils/avatars');
 const { PUBLIC_AVATARS_PATH } = require('../../../constants/folders');
 
