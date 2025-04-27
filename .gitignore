@@ -1,8 +1,9 @@
-node_modules/
 .env
 .idea
 .vscode
 
-# folders temp and public
+# folders
+node_modules/
 temp/
 public/
+coverage/
