@@ -1,4 +1,3 @@
-const { nanoid } = require('nanoid');
 const contacts = require('../services/schemas/contacts');
 
 
