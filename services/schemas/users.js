@@ -30,11 +30,7 @@ const user = new mongoose.Schema(
         verify: {
             type: Boolean,
             default: false,
-        },
-        verificationToken: {
-            type: String,
-            required: [true, 'Verify token is required'],
-        },
+        }
     },
     { versionKey: false, timestamps: true }
 );
