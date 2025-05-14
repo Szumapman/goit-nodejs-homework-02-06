@@ -1,6 +1,6 @@
 const { STARTER, PRO, BUSSINES } = require('../../constants/subscriptions');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 10;
 
@@ -26,6 +26,10 @@ const user = new mongoose.Schema(
         },
         avatarURL: {
             type: String,
+        },
+        verify: {
+            type: Boolean,
+            default: false,
         }
     },
     { versionKey: false, timestamps: true }
