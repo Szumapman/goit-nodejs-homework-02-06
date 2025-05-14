@@ -9,6 +9,9 @@ const login = async (req, res, next) => {
         if (!user) {
             return res.status(401).json({ message: MESSAGE_WRONG_LOGIN });
         }
+        if (!user.verify) {
+            return res.status(401).json({ message: "Email not verified. Check your inbox for the verification link first." });
+        }
         const isPasswordValid = await user.verifyPassword(password);
         if (!isPasswordValid) {
             return res.status(401).json({ message: MESSAGE_WRONG_LOGIN });
