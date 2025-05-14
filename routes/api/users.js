@@ -10,6 +10,7 @@ const setSubscription = require('../../middlewares/routes/users/setSubscription'
 const uploadAvatar = require('../../middlewares/routes/users/uploadAvatar');
 const moveAvatar = require('../../middlewares/routes/users/moveAvatar');
 const setAvatar = require('../../middlewares/routes/users/setAvatar');
+const verifyUserEmail = require('../../middlewares/routes/users/verifyUserEmail');
 
 const router = express.Router()
 
@@ -25,5 +26,7 @@ router.get('/current', auth, getCurrentUser);
 router.patch('/', subscriptionValidator, auth, setSubscription);
 
 router.patch('/avatars', auth, uploadAvatar.single('avatar'), moveAvatar, setAvatar);
+
+router.get('/verify/:verificationToken', verifyUserEmail);
 
 module.exports = router
