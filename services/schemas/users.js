@@ -1,6 +1,6 @@
 const { STARTER, PRO, BUSSINES } = require('../../constants/subscriptions');
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 require('dotenv').config();
 const SALT_ROUNDS = Number(process.env.SALT_ROUNDS) || 10;
 
